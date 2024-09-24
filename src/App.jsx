@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { BrowserRouter, Routes,Route } from 'react-router-dom'
 
-import  {Homepage}  from './pages/index.pages.js'
+import  {Homepage, Registerpage}  from './pages/index.pages.js'
 import {Navbar} from './components/index.components.js'
 import Loginpage from './pages/Loginpage.jsx'
 
@@ -19,7 +19,8 @@ function App() {
         <Route path='/' element={<Homepage/>}/>
 
         <Route path='/login' element={<Loginpage/>}/>
-        <Route path='/profile' element={ <p>Productos</p>}/>
+        <Route path='/register' element={<Registerpage/>}/>
+        <Route path='/profile' element={ <p>Profile</p>}/>
       </Routes>
   </BrowserRouter>
     </>

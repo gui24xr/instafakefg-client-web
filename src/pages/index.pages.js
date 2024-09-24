@@ -1,7 +1,7 @@
 import Homepage from "./Homepage.jsx";
-
+import Registerpage from "./Registerpage.jsx";
 
 export {
-    Homepage,
+    Homepage,Registerpage
    
 }

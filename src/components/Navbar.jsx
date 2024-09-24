@@ -21,6 +21,9 @@ export default function Navbar() {
         <Link to={'/login'} class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
         Login
       </Link>
+      <Link to={'/register'} class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
+      Register
+    </Link>
       <Link to={'/profile'} class="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
       profile
     </Link>
