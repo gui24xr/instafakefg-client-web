@@ -1,17 +1,21 @@
 import React from 'react'
 import { useState,useEffect } from 'react'
-
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 export default function LoginForm() {
+
+    const navigate = useNavigate()
     const [userInputText,setUserInputText] = useState({username:"",password:""})
 
-    useEffect(()=>{
+    /*
+    Effect(()=>{
         console.log('Valor userInputText: ',userInputText )
     
       },[userInputText])
+  */
 
     const onHandlerInputChange = (event)=>{
-    
         event.target.id == "input-username" && setUserInputText(prevData => ({...prevData,username:event.target.value}))
         event.target.id == "input-password" && setUserInputText(prevData => ({...prevData,password:event.target.value}))
     }
@@ -19,9 +23,21 @@ export default function LoginForm() {
     const onHandlerSubmit= (event) =>{
         event.preventDefault()
         console.log('submit')
-        fetch('https://jsonplaceholder.typicode.com/posts')
-          .then(res => res.json())
-          .then(json => setRequestData(json))
+        axios.post('http://localhost:8080/api/sessions/login',{
+          userName: userInputText.username,
+          password: userInputText.password
+        },{withCredentials:true})
+        .then(function (response) {
+          console.log(response)
+          //ACA ALMACENAMOS LOS DATOS DEL USER LOGUEADO PERO DE LADO CLIENTE...
+          navigate('/profile')
+        })
+        .catch(function (error) {
+          console.log(error);
+
+          if (error.status == 401) alert('Usuario o contraseña incorrectos...')
+          else navigate('/errorpage')
+        });
       }
 
   return (
