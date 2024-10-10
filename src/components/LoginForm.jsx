@@ -34,7 +34,9 @@ export default function LoginForm() {
       password: userInputText.password
     }, { withCredentials: true })
       .then(function (response) {
-        console.log(response)
+        console.log("ajoooooooooooooooooo", response)
+        console.log("aquiiiiiiiiiiiiiii", response.data)
+        console.log("pppppppppppppppppppppppiiiiiiiiiiiiiiiiiiiiii", response.data.userName)
         dispatch(setCurrentUser(response.data))
         //aca almacenamos en el dispatch 
 
