@@ -28,11 +28,13 @@ const userSlice = createSlice({
     age: null,
     createdAt: null,
   },
-  reducer: {
+  reducers: {
     setCurrentUser: (state, action) => {
+
+      console.log('LLEGO AL ACTION: ', action.payload)
       const { userId, userName, password, name, lastName, age, createdAt } =
         action.payload;
-      (state.userId = userId),
+         (state.userId = userId),
         (state.userName = userName),
         (state.password = password),
         (state.name = name),

@@ -37,7 +37,7 @@ export default function LoginForm() {
         console.log("ajoooooooooooooooooo", response)
         console.log("aquiiiiiiiiiiiiiii", response.data)
         console.log("pppppppppppppppppppppppiiiiiiiiiiiiiiiiiiiiii", response.data.userName)
-        dispatch(setCurrentUser(response.data))
+        dispatch(setCurrentUser({...response.data.data}))
         //aca almacenamos en el dispatch 
 
         //ACA ALMACENAMOS LOS DATOS DEL USER LOGUEADO PERO DE LADO CLIENTE...
