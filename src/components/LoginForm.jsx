@@ -21,23 +21,22 @@ export default function LoginForm() {
     },[userInputText])
 */
 
-  const onHandlerInputChange = (event) => {
-    event.target.id == "input-username" && setUserInputText(prevData => ({ ...prevData, username: event.target.value }))
-    event.target.id == "input-password" && setUserInputText(prevData => ({ ...prevData, password: event.target.value }))
-  }
-
   const onHandlerSubmit = (event) => {
     event.preventDefault()
     console.log('submit')
+
+    const formData = new FormData(event.target)
+    const { userName, password } = Object.fromEntries(formData.entries())
+    //console.log('peeptpeepte: TE AMO LUISMIGUEL', userName, password)
+
+
     axios.post('http://localhost:8080/api/sessions/login', {
-      userName: userInputText.username,
-      password: userInputText.password
+      userName: userName,
+      password: password
     }, { withCredentials: true })
       .then(function (response) {
-        console.log("ajoooooooooooooooooo", response)
-        console.log("aquiiiiiiiiiiiiiii", response.data)
-        console.log("pppppppppppppppppppppppiiiiiiiiiiiiiiiiiiiiii", response.data.userName)
-        dispatch(setCurrentUser({...response.data.data}))
+        console.log("Esta de aqui es datata data ", response.data.data)
+        dispatch(setCurrentUser({ ...response.data.data }))
         //aca almacenamos en el dispatch 
 
         //ACA ALMACENAMOS LOS DATOS DEL USER LOGUEADO PERO DE LADO CLIENTE...
@@ -49,6 +48,7 @@ export default function LoginForm() {
         if (error.status == 401) alert('Usuario o contraseña incorrectos...')
         else navigate('/errorpage')
       });
+
   }
 
   return (
@@ -66,8 +66,9 @@ export default function LoginForm() {
           <input
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="input-username"
+            name="userName"
             type="text"
-            onChange={onHandlerInputChange}
+            required
           />
         </div>
       </div>
@@ -85,8 +86,9 @@ export default function LoginForm() {
             class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
             id="input-password"
             type="password"
+            name="password"
             placeholder="******************"
-            onChange={onHandlerInputChange}
+            required
           />
         </div>
       </div>

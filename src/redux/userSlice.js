@@ -22,21 +22,18 @@ const userSlice = createSlice({
   initialState: {
     userId: null,
     userName: null,
-    password: null,
     name: null,
     lastName: null,
     age: null,
     createdAt: null,
   },
   reducers: {
+    ///me escuchas?
     setCurrentUser: (state, action) => {
-
-      console.log('LLEGO AL ACTION: ', action.payload)
-      const { userId, userName, password, name, lastName, age, createdAt } =
+      const { userId, userName, name, lastName, age, createdAt } =
         action.payload;
-         (state.userId = userId),
+      (state.userId = userId),
         (state.userName = userName),
-        (state.password = password),
         (state.name = name),
         (state.lastName = lastName),
         (state.age = age),
